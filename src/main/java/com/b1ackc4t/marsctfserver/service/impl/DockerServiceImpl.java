@@ -92,7 +92,12 @@ public class DockerServiceImpl implements DockerService {
         }
         frpService.flushFrpConfig();
         ContainerView containerView = new ContainerView();
-        containerView.setUrl("http://" + config.getRetDomain() + ":" + dstPort + "/");
+        //处理pwn题返回的题目地址 pwn 类型对应的 tid 为2
+        if(challenge.getTid() == 2) {
+            containerView.setUrl("nc " + config.getRetDomain() + " " + dstPort);
+        }else {
+            containerView.setUrl("http://" + config.getRetDomain() + ":" + dstPort + "/");
+        }
         containerView.setEndTime(new Date(startTime.getTime() + config.getDockerTime() * 1000));
         containerView.setCount(config.getAddTimeCount());
         return new ReturnRes(true, containerView, "容器开启成功");
