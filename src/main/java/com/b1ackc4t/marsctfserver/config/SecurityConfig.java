@@ -83,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .antMatchers("/api/login").permitAll()  // 开放访问的目录
                 .antMatchers("/api/logout").permitAll()
-                .antMatchers("/api/register").permitAll()
+                .antMatchers("/api/register").denyAll()
                 .antMatchers("/api/getCaptchaImage").permitAll()
                 .antMatchers("/api/user/downloadCTFFile/**").authenticated()
                 .antMatchers("/api/userinfo/*").denyAll()
